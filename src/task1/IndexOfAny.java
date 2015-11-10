@@ -1,36 +1,26 @@
 package task1;
 
 public class IndexOfAny {
-  /**
-   * Write covering tests + refactor code.
-   * In this task signature should stay the same
-   */
-  public static int indexOfAny(String str, char[] searchChars) {
-    if(!str.isEmpty() && searchChars.length > 0) {
-      int csLen = str.length();
-      int csLast = csLen - 1;
-      int searchLen = searchChars.length;
-      int searchLast = searchLen - 1;
+	/**
+	 * Write covering tests + refactor code. In this task signature should stay
+	 * the same
+	 */
+	public static int indexOfAny(String str, char[] searchChars) {
+		for (int i = 0; i < str.length(); ++i) {
+			if (isArrayContains(str.charAt(i), searchChars)) {
+				return i;
+			}
+		}
 
-      for(int i = 0; i < csLen; ++i) {
-        char ch = str.charAt(i);
+		return -1;
+	}
 
-        for(int j = 0; j < searchLen; ++j) {
-          if(searchChars[j] == ch) {
-            if(i >= csLast || j >= searchLast) {
-              return i;
-            }
-
-            if(searchChars[j + 1] == str.charAt(i + 1)) {
-              return i;
-            }
-          }
-        }
-      }
-
-      return -1;
-    } else {
-      return -1;
-    }
-  }
+	private static boolean isArrayContains(char symbol, char[] array) {
+		for (char arraySymbol : array) {
+			if (arraySymbol == symbol) {
+				return true;
+			}
+		}
+		return false;
+	}
 }
